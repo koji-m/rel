@@ -3,7 +3,7 @@ require 'dotenv'
 
 Dotenv.load
 
-ActiveRecord::Base.establish_connection(ENV['DATABASE_URL'].sub('../', ''))
+ActiveRecord::Base.establish_connection(ENV['DATABASE_URL'])
 
 ActiveRecord::Schema.define do
 
