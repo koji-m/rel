@@ -21,7 +21,7 @@ CONFIG = conf[ENV['RACK_ENV']]
 ActiveRecord::Base.establish_connection(ENV['DATABSE_URL'])
 
 # Load Models, Controllers, Helpers.
-Dir.glob("./{helpers,models,controllers}/*.rb").each do |file|
+Dir.glob("./lib/{helpers,models,controllers}/*.rb").each do |file|
   require file
 end
 
