@@ -7,7 +7,7 @@
   width: 500px;
 }
 
-#sign_in_panel, #sign_up_panel {
+#sign_in_panel, #sign_up_panel, #error_panel {
   width: 380px;
   height: 500px;
 }
