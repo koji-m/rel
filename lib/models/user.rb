@@ -58,7 +58,7 @@ class User < ActiveRecord::Base
 
   def self.tw_authenticate(user_info, access_token)
     # Sign-in if exist
-    user = User.where(provider: 'twitter', uid: user_info['id']).first
+    user = User.where(provider: 'twitter', uid: user_info['id'].to_i).first
     if user
       user.access_token = access_token.token
       user.access_token_secret = access_token.secret
