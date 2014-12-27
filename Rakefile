@@ -22,6 +22,22 @@ namespace :app do
     end
     
   end
+
+  desc 'generate .env template'
+  task :env do
+    File.open('./.env', 'w') do |file|
+  file.write(<<EOF)
+RACK_ENV=
+SESSION_SECRET=
+SSL_AT_KEY=
+SSL_ATS_KEY=
+TW_CKEY=
+TW_CSEC=
+TW_CALLBACK=
+TYPEKIT_URL=
+EOF
+    end
+  end
 end
 
 namespace :db do
