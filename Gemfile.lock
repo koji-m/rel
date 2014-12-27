@@ -9,7 +9,6 @@ PATH
       oauth
       rack-flash3
       sinatra
-      sqlite3
 
 GEM
   remote: https://rubygems.org/
@@ -87,4 +86,5 @@ DEPENDENCIES
   redcarpet
   rel!
   sinatra-reloader
+  sqlite3
   yard

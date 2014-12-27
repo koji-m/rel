@@ -24,9 +24,9 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "redcarpet"
   spec.add_development_dependency "sinatra-reloader"
   spec.add_development_dependency "dotenv"
+  spec.add_development_dependency "sqlite3"
 
   spec.add_dependency "activerecord"
-  spec.add_dependency "sqlite3"
   spec.add_dependency "sinatra"
   spec.add_dependency "oauth"
   spec.add_dependency "rack-flash3"
