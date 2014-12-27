@@ -29,6 +29,11 @@ namespace :db do
   task :init => :dotenv do
     require_relative "db/schema.rb"
   end
+
+  desc 'drop all tables'
+  task :drop => :dotenv do
+    require_relative "db/drop.rb"
+  end
 end
 
 

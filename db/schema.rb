@@ -13,7 +13,7 @@ ActiveRecord::Schema.define do
     t.string "password", null: false
     t.string "password_salt"
     t.string "provider", null: false
-    t.integer "uid", null: false
+    t.decimal "uid", null: false, precision: 10, scale: 0
     t.string "access_token"
     t.string "access_token_secret"
     t.string "prof_img", null: false
