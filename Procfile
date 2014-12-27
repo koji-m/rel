@@ -1,1 +1,1 @@
-web: bundle exec lib/rackup -p 80
+web: bundle exec ./lib/rackup -p 80
