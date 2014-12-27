@@ -70,16 +70,16 @@
                 <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
               <% if @current_page == 'home' %>
                 <span class="sr-only">(current)</span>
-              <% end %>
+                <% end %>
               </a>               
             </li>
             <li <% if @current_page == 'user_page' %>class="active"<% end %>>
-              <a id="user_page_link" href="/user/<%= current_user.name %>" data-toggle="tooltip" data-placement="bottom" title="User Page">
-                <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+              <a id="user_page_link" href="/user/<%= current_user.name %>" data-toggle="tooltip" data-placement="bottom" title="User">
+              <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
               <% if @current_page == 'user_page' %>
                 <span class="sr-only">(current)</span>
               <% end %>
-              </a>               
+              </a>
             </li>
             <li <% if @current_page == 'setting' %>class="active"<% end %>>
               <a id="setting_link" href="/user/edit" data-toggle="tooltip" data-placement="bottom" title="Setting">
