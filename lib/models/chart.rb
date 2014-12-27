@@ -63,9 +63,8 @@ class Chart < ActiveRecord::Base
   def self.fetch(chrt_id)
     return nil unless c_id = (Integer(chrt_id) rescue nil)
     return nil unless chrt = self.find_by_id(c_id)
-    p chrt.data
-    p chrt.option
-    p c_id
+    p '>>>> fetch >>>>', chrt.data, chrt.option, c_id
+
     {data: Marshal.load(chrt.data), option: Marshal.load(chrt.option)}
   end
 
@@ -100,6 +99,7 @@ class Chart < ActiveRecord::Base
         end
       else
         # create new chart
+        p '>>>>>>> save_chart >>>>>>>', Marshal.dump([chrt_data]), Marshal.dump(opts_data)
         chrt = Chart.new(data: Marshal.dump([chrt_data]), option: Marshal.dump(opts_data))
         chrt.title = opts_data['title']['text'].nil? ? '' : opts_data['title']['text']
         chrt.xlabel = opts_data['axes']['xaxis']['label'].nil? ? '' : opts_data['axes']['xaxis']['label']
