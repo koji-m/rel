@@ -58,8 +58,8 @@ ActiveRecord::Schema.define do
   add_index "hash_tags", ["tag"], name: "index_hash_tags_on_tag"
 
   create_table "charts", force: true do |t|
-    t.text "option", null: false
-    t.text "data", null: false
+    t.longtext "option", null: false
+    t.longtext "data", null: false
     t.text "title", null: false
     t.text "xlabel", null: false
     t.text "ylabel", null: false
