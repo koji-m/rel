@@ -1,0 +1,113 @@
+#page {
+  margin: 0 auto;
+  width: 800px;
+}
+
+#warning_panel {
+  width: 500px;
+}
+
+#sign_in_panel, #sign_up_panel {
+  width: 380px;
+  height: 500px;
+}
+
+#social_connect_box {
+  width: 200px;
+  height: 50px;
+  margin: 20px auto;
+}
+
+#social_connect_box p {
+  text-align: center;
+  font-size: large;
+}
+
+#social_connect_box a {
+  margin-left: 29px;
+}
+
+.warning-msg {
+  width: 380px;
+  color: #ff6161;
+ }
+
+#dev-p2 {
+  float: left;
+}
+
+body {
+  padding-top: 60px;
+}
+
+#main_contents {
+  clear: both;
+}
+
+.post_time {
+  color: #999;
+}
+
+footer {
+  clear: both;
+  text-align: center;
+}
+
+#userName {
+  font-size: xx-large;
+}
+#comment_txt {
+  width: 100%;
+}
+
+.minicolors-theme-bootstrap {
+  width: 30px;
+  height: 30px;
+}
+
+.add-point-btn {
+  height: 30px;
+}
+
+.rm-point-btn {
+  height: 30px;
+}
+
+.series-controller {
+  clear: left;
+}
+.series-controller * {
+  float: left;
+}
+
+#series_generator_box {
+  clear: left;
+  padding-top: 3px;
+  padding-bottom: 4px;
+}
+
+.point-btn-group {
+  margin: 0px 2px 1px 0px;
+}
+
+#user_status {
+  margin-top: 3px;
+}
+
+#tail_time_stamp {
+  font-size: large;
+}
+
+#search_label {
+  font-size: large;
+}
+
+#queryWord {
+  font-size: x-large;
+}
+
+@media (min-width: 792px) {
+  .modal-default-size {
+    width: 700px;
+  }
+}

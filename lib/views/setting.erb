@@ -1,0 +1,73 @@
+<% if flash[:warn] %>
+  <div>WARNING</div>
+  <ul>
+  <% flash[:warn].each do |attr, msg| %>
+  <% msg.each do |m| %>
+  <li><%= to_screen(attr) %> <%= m %></li>
+  <% end %>
+  <% end %>
+  </ul>
+<% end %>
+
+<h2>Setting</h2>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">User Info</h3>
+  </div>
+  <div class="panel-body">
+    <form method="post" action="/user">
+      <div class="form-group col-md-6">
+        <label for="frm-username">User Name</label>
+        <input class="form-control" id="frm-username" type="text" name="username" value="<%= @current_user.name %>" readonly/>
+      </div>
+      <div class="form-group col-md-6" style="clear: left;">
+        <label for="frm-email">E-mail</label>
+        <input class="form-control" id="frm-email" type="text" name="email" value="<%= @current_user.email %>"/>
+      </div>
+      <div class="form-group col-md-6" style="clear: left;">
+        <button class="btn btn-default" type="submit">Update</button>
+        <input type="hidden" name="_method" value="put"/>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Password</h3>
+  </div>
+  <div class="panel-body">
+    <form method="post" action="/user/password">
+      <% if @current_user.provider == 'twitter' %>
+      <fieldset disabled>
+      <% end %>
+      <div class="form-group col-md-6">
+        <label for="frm-current_password">Current Password</label>
+        <input class="form-control" id="frm-current_password" type="password" name="current_password"/>
+      </div>
+      <div class="form-group col-md-6" style="clear: left;">
+        <label for="frm-new_password">New Password</label>
+        <input class="form-control" id="frm-new_password" type="password" name="new_password"/>
+      </div>
+      <div class="form-group col-md-6" style="clear: left;">
+        <label for="frm-new_password_confirm">New Password (confirm)</label>
+        <input class="form-control" id="frm-new_password_confirm" type="password" name="new_password_confirm"/>
+      </div>
+      <div class="form-group col-md-6" style="clear: left;">
+        <button class="btn btn-default" type="submit">Update</button>
+        <input type="hidden" name="_method" value="put"/>
+      </div>
+      <% if @current_user.provider == 'twitter' %>
+      </fieldset>
+      <% end %>
+    </form>
+  </div>
+</div>
+
+<form method="post" action="/user">
+  <div class="form-group col-md-6">
+    <button class="btn btn-default" type="submit">Delete Account</button>
+    <input type="hidden" name="_method" value="delete"/>
+  </div>
+</form>

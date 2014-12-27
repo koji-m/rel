@@ -1,0 +1,13 @@
+function dragableFilter(event, gridpos, datapos, neighbor, plot){
+  if(neighbor != null){
+    switch(neighbor.seriesIndex){
+    <% @parm.each do |elm| %>
+      case <%= elm[0] %>:
+        if(neighbor.pointIndex < <%= elm[1] %>){
+          event.stopImmediatePropagation();
+        }
+        break;
+    <% end %>
+    }
+  }
+}

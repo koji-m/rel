@@ -1,0 +1,17 @@
+<% if flash[:warn] %>
+  <p>Warning: <%= flash[:warn] %></p>
+<% end %>
+<h2>User Info Registration</h2>
+
+<form method="post" action="/user/auth/twitter">
+  <label for="frm-username">UserName</label>
+  <input id="frm-username" type="text" name="username" />
+
+  <input type="hidden" name="uid" value="<%= @uid %>" />
+  <input type="hidden" name="screen_name" value="<%= @screen_name %>" />
+  <input type="hidden" name="prof_img_url" value="<%= @prof_img_url %>" />
+  <input type="hidden" name="access_token" value="<%= @access_token %>" />
+  <input type="hidden" name="access_token_secret" value="<%= @access_token_secret %>" />
+  
+  <button type="submit" class="btn btn-default">SignUp</button>
+</form>

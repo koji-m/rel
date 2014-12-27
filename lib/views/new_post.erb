@@ -1,0 +1,59 @@
+<h2>New Post</h2>
+<% if flash[:warn] %>
+  <em>Warning: <%= flash[:warn] %></em>
+<% end %>
+
+<script type="text/javascript">
+  $(function(){
+    var chrt_id =  <% @chrt_id.nil? ? %> null <% : %> <%= @chrt_id %> <% ; %>
+    
+    // Get chart data
+    // data = {series: <series data>, comments: <comment data>, options: <option data>}
+    xhr = getChartDataForEdit(chrt_id);
+    if(xhr){
+      xhr.done(fucntion(chrt){
+        // Make Tooltip Content Editor with given comment
+        var cmmt = chrt['comments'];
+        tooltipContentEdit = function(str, seriesIndex, pointIndex){
+          if(cmmt[seriesIndex]){
+            if(cmmt[seriesIndex][pointIndex]){
+              return cmmt[seriesIndex][pointIndex];
+            }
+          }
+          return str;
+        };
+
+        // Set tooltipContentEditor attribute to option
+        chrt['options']['highlighter']['tooltipContentEditor'] = tooltipContentEdit;
+
+        // Set Chart
+        plot = $.jqplot('chart-editor', chrt['series'], chrt['options']);
+      }).fail(function(chrt){
+        chrt = {series: new_chart_series, options: new_chart_options};
+        // Set Chart
+        plot = $.jqplot('chart-editor', chrt['series'], chrt['options']);
+      });
+    }else{
+      chrt = {series: new_chart_series, options: new_chart_options};
+      // Set Chart
+      plot = $.jqplot('chart-editor', chrt['series'], chrt['options']);
+    }
+
+    $('#chart-submit').click(function(event){
+      event.preventDeafault();
+      sendData();
+    });
+
+    function sendData(){
+      // capture series data and send by XHR
+    }
+  });
+</script>
+
+<div>
+  <form method="post" action="/post">
+    <textarea rows="3" name="comment"><%= @pst.comment %></textarea>
+    <id="chart-editor" div style="width:600px;height:300px;"></div>
+    <button id="chart-submit" type="submit">Post</button>
+  </form>
+</div>

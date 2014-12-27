@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>rel</title>
+    
+    <meta charset="UTF-8" />
+
+
+    <!-- jQuery -->
+    <script type="text/javascript" src="/jqplot/jquery.min.js"></script>
+    <script type="text/javascript" src="/jquery-migrate-1.2.1.min.js"></script>
+    
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" />
+    <script type="text/javascript" src="/bootstrap/js/bootstrap.min.js"></script>
+    
+    <!-- Provision for IE earlier than ver.9 -->
+    <!--[if lt IE 9]>
+    <script language="javascript" type="text/javascript" src="/jqplot/excanvas.min.js"></script>
+    <![endif]-->
+
+    <!-- jqPlot standard style -->
+    <link rel="stylesheet" href="/jqplot/jquery.jqplot.min.css" type="text/css" />
+    
+    <!-- jqPlot -->
+    <script type="text/javascript" src="/jqplot/jquery.jqplot.js"></script>
+
+    <!-- MiniColors -->
+    <link rel="stylesheet" href="/minicolors/jquery.minicolors.css" type="text/css">
+    <script type="text/javascript" src="/minicolors/jquery.minicolors.min.js"></script>
+
+    <!-- handsontable -->
+    <script src="/handsontable/handsontable.full.min.js"></script>
+    <link rel="stylesheet" media="screen" href="/handsontable/handsontable.full.min.css">
+    
+    <!-- helpers -->
+    <script type="text/javascript" src="/rel.js"></script>
+
+    <!-- original styles -->
+    <link rel="stylesheet" href="/style.css"/>
+
+    <!-- jqPlot plugins -->
+    <script type="text/javascript" src="/jqplot/plugins/jqplot.highlighter.js"></script>
+    <script type="text/javascript" src="/jqplot.filter.js"></script>
+    <script type="text/javascript" src="/jqplot/plugins/jqplot.dragable.js"></script>
+
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbarItems">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">Rel</a>
+        </div>
+        <div class="collapse navbar-collapse" id="navbarItems">
+          <% if signed_in? %>
+          <ul class="nav navbar-nav">
+            <li <% if @current_page == 'home' %>class="active"<% end %>>
+              <a id="home_link" href="/" data-toggle="tooltip" data-placement="bottom" title="Home">
+                <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+              <% if @current_page == 'home' %>
+                <span class="sr-only">(current)</span>
+              <% end %>
+              </a>               
+            </li>
+            <li <% if @current_page == 'setting' %>class="active"<% end %>>
+              <a id="setting_link" href="/user/edit" data-toggle="tooltip" data-placement="bottom" title="Setting">
+                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+              <% if @current_page == 'setting' %>
+                <span class="sr-only">(current)</span>
+              <% end %>
+              </a>
+            </li>
+          </ul>
+          <form class="navbar-form navbar-left" method="get" action="/search" role="search">
+            <div class="form-group input-group">
+              <input type="text" class="form-control" name="q" placeholder="Search" value="<% if @query_word %><%= @query_word %><% end %>" />
+              <span class="input-group-btn">
+                <button class="btn btn-default" type="submit">
+                  <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                </button>
+              </span>
+            </div>
+          </form>
+          <form class="navbar-form navbar-right" method="post" action="/user/session">
+            <button id="sign_out_btn" class="btn btn-default" type="submit" data-toggle="tooltip" data-placement="bottom" title="Sign Out">
+              <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
+            </button>
+            <input type="hidden" name="_method" value="delete"/>
+          </form>
+          <% else %>
+          <% if @current_page != 'sign_up_page' %>
+          <ul class="nav navbar-nav navbar-right">
+            <% if @current_page != 'sign_in_page'%>
+            <li>
+              <a href="/user/sign_in">Sign in</a>               
+            </li>
+            <% end %>
+            <li>
+              <a href="/user/sign_up">Sign up</a>
+            </li>
+          </ul>
+          <% end %>
+          <% end %>
+        </div>  
+      </div>
+    </nav>
+    
+    <div id="page">
+      <%== yield %>
+    </div>
+
+    <footer>
+      <small>
+        Copyright &copy; 2014
+        <a href="http://koj.pw/">koj.pw</a>
+        . All Rights Reserved.
+      </small>
+    </footer>
+  </body>
+</html>
+  

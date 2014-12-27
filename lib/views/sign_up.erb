@@ -1,0 +1,36 @@
+<div class="container" id="warning_panel">
+
+</div>
+
+<div class="container" id="sign_up_panel">
+
+  <% if flash[:warn] %>
+  <% flash[:warn].each do |attr, msg| %>
+  <% msg.each do |m| %>
+  <div class="warning-msg">
+    <span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>
+    <%= to_screen(attr) %> <%= m %>
+  </div>
+  <% end %>
+  <% end %>
+  <% end %>
+
+  <h2>Sign Up</h2>
+  
+  <form method="post" action="/user">
+    <label for="frm-username">User Name</label>
+    <input id="frm-username" type="text" name="username" class="form-control"
+           value="<% if @username %><%= @username %><% end %>" />
+    <label for="frm-email">E-mail</label>
+    <input id="frm-email" type="text" name="email" class="form-control"
+           value="<% if @email %><%= @email %><% end %>" />
+    <label for="frm-password">Password</label>
+    <input id="frm-password" type="password" name="password" class="form-control" />
+    <label for="frm-password_confirm">Password(confirm)</label>
+    <input id="frm-password_confirm" type="password" class="form-control"
+           name="password_confirm" />
+    <br />
+    <button class="btn btn-default btn-block" type="submit">Sign up</button>
+  </form>
+  
+</div>
