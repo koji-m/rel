@@ -63,9 +63,9 @@ class Chart < ActiveRecord::Base
   def self.fetch(chrt_id)
     return nil unless c_id = (Integer(chrt_id) rescue nil)
     return nil unless chrt = self.find_by_id(c_id)
-    p '>>>> fetch >>>>', chrt.data, chrt.option, c_id
 
-    {data: Marshal.load(chrt.data), option: Marshal.load(chrt.option)}
+    {data: Marshal.load(Base64.decode64(chrt.data)),
+      option: Marshal.load(Base64.decode64(chrt.option))}
   end
 
   # Save chart data with specified chart id(chrt_id) and post id(pst_id).
@@ -89,7 +89,7 @@ class Chart < ActiveRecord::Base
         if self.editable?(chrt_id, usr_id)
           if chrt = Chart.find_by_id(chrt_id)
             chrt.data_append chrt_data
-            chrt.option = Marshal.dump(opts_data)
+            chrt.option = Base64.encode64(Marshal.dump(opts_data))
             chrt.save!
           else
             raise 'Chart not found'
@@ -99,8 +99,8 @@ class Chart < ActiveRecord::Base
         end
       else
         # create new chart
-        p '>>>>>>> save_chart >>>>>>>', Marshal.dump([chrt_data]), Marshal.dump(opts_data)
-        chrt = Chart.new(data: Marshal.dump([chrt_data]), option: Marshal.dump(opts_data))
+        chrt = Chart.new(data: Base64.encode64(Marshal.dump([chrt_data])),
+                         option: Base64.encode64(Marshal.dump(opts_data)))
         chrt.title = opts_data['title']['text'].nil? ? '' : opts_data['title']['text']
         chrt.xlabel = opts_data['axes']['xaxis']['label'].nil? ? '' : opts_data['axes']['xaxis']['label']
         chrt.ylabel = opts_data['axes']['yaxis']['label'].nil? ? '' : opts_data['axes']['yaxis']['label']
@@ -115,7 +115,7 @@ class Chart < ActiveRecord::Base
   def self.save_quoted_chart(pst, quote_id)
     org_post = Post.find(quote_id)
     org_chart = org_post.chart
-    chart_data = Marshal.load(org_chart.data)
+    chart_data = Marshal.load(Base64.decode64(org_chart.data))
 
     new_chart = []
     
@@ -125,11 +125,12 @@ class Chart < ActiveRecord::Base
     end
     
     Chart.transaction do
-      chrt = Chart.new(data: Marshal.dump(new_chart), option: org_chart.option)
-      opts_data = Marshal.load(org_chart.option)
+      chrt = Chart.new(data: Base64.encode64(Marshal.dump(new_chart)),
+                       option: org_chart.option)
+      opts_data = Marshal.load(Base64.decode64(org_chart.option))
       chrt.title = opts_data['title']['text'].nil? ? '' : opts_data['title']['text']
-        chrt.xlabel = opts_data['axes']['xaxis']['label'].nil? ? '' : opts_data['axes']['xaxis']['label']
-        chrt.ylabel = opts_data['axes']['yaxis']['label'].nil? ? '' : opts_data['axes']['yaxis']['label']
+      chrt.xlabel = opts_data['axes']['xaxis']['label'].nil? ? '' : opts_data['axes']['xaxis']['label']
+      chrt.ylabel = opts_data['axes']['yaxis']['label'].nil? ? '' : opts_data['axes']['yaxis']['label']
       chrt.save!
 
       pst.chart = chrt
@@ -140,9 +141,9 @@ class Chart < ActiveRecord::Base
   # Append chart data associated with a post.
   # chrt_data: Array [<post_id>, <series_data>]
   def data_append(chrt_data)
-    ums_data = Marshal.load(self.data)
+    ums_data = Marshal.load(Base64.decode64(self.data))
     ums_data << chrt_data
-    self.data = Marshal.dump(ums_data)
+    self.data = Base64.encode64(Marshal.dump(ums_data))
   end
 
   # Editable only if the user is owner of the chart

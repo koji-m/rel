@@ -2,7 +2,7 @@
 
 class PlotOptionValidator < ActiveModel::EachValidator
   def validate_each(record, attribute, value)
-    options = Marshal.load(value)
+    options = Marshal.load(Base64.decode64(value))
     series = options['series']
 
     series.each do |s|
