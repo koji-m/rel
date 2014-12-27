@@ -1,12 +1,12 @@
 <% if flash[:warn] %>
-  <div>WARNING</div>
-  <ul>
-  <% flash[:warn].each do |attr, msg| %>
-  <% msg.each do |m| %>
-  <li><%= to_screen(attr) %> <%= m %></li>
-  <% end %>
-  <% end %>
-  </ul>
+<% flash[:warn].each do |attr, msg| %>
+<% msg.each do |m| %>
+<div class="warning-msg">
+  <span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>
+  <%= to_screen(attr) %> <%= m %>
+</div>
+<% end %>
+<% end %>
 <% end %>
 
 <h2>Setting</h2>
