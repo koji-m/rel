@@ -3,6 +3,7 @@ PATH
   specs:
     rel (0.0.1)
       activerecord
+      dotenv
       erubis
       mail
       mimemagic
@@ -80,7 +81,6 @@ PLATFORMS
 
 DEPENDENCIES
   bundler (~> 1.6)
-  dotenv
   pg
   rake
   redcarpet
