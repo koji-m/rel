@@ -1,1 +1,1 @@
-web: bundle exec rackup -p 80 lib/config.ru
+web: bundle exec rackup -p $PORT lib/config.ru
