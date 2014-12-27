@@ -18,7 +18,7 @@ CONFIG = conf[ENV['RACK_ENV']]
 # <<ActiveRecord Note for Connection Pooling>>
 # establish_connection actually doesn't make connection, just configuring.
 # Connection will be made when connection (which is called by query methods) is called.
-ActiveRecord::Base.establish_connection(ENV['DATABSE_URL'])
+ActiveRecord::Base.establish_connection(ENV['DATABASE_URL'])
 
 # Load Models, Helpers.
 Dir.glob("./lib/{helpers,models}/*.rb").each do |file|
