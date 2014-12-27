@@ -12,3 +12,5 @@ ActiveRecord::Schema.define do
   drop_table "posts"
   drop_table "hash_tags"
   drop_table "charts"
+  
+end
