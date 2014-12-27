@@ -20,10 +20,17 @@ CONFIG = conf[ENV['RACK_ENV']]
 # Connection will be made when connection (which is called by query methods) is called.
 ActiveRecord::Base.establish_connection(ENV['DATABSE_URL'])
 
-# Load Models, Controllers, Helpers.
-Dir.glob("./lib/{helpers,models,controllers}/*.rb").each do |file|
+# Load Models, Helpers.
+Dir.glob("./lib/{helpers,models}/*.rb").each do |file|
   require file
 end
+
+require './lib/controllers/application_controller.rb'
+
+Dir.glob("./lib/controllers/*.rb").each do |file|
+  require file
+end
+
 
 # Initialize OAuth Consumer for Twitter.
 twitter_conf = CONFIG['oauth']['twitter']
