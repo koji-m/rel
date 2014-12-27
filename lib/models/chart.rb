@@ -63,7 +63,9 @@ class Chart < ActiveRecord::Base
   def self.fetch(chrt_id)
     return nil unless c_id = (Integer(chrt_id) rescue nil)
     return nil unless chrt = self.find_by_id(c_id)
-    
+    p chrt.data
+    p chrt.option
+    p c_id
     {data: Marshal.load(chrt.data), option: Marshal.load(chrt.option)}
   end
 
