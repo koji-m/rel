@@ -59,7 +59,7 @@ ActiveRecord::Schema.define do
 
   create_table "charts", force: true do |t|
     t.text "option", null: false, limit: nil
-    t.text "data", null: falsem limit: nil
+    t.text "data", null: false, limit: nil
     t.text "title", null: false
     t.text "xlabel", null: false
     t.text "ylabel", null: false
