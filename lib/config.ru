@@ -18,38 +18,35 @@ CONFIG = conf[ENV['RACK_ENV']]
 # <<ActiveRecord Note for Connection Pooling>>
 # establish_connection actually doesn't make connection, just configuring.
 # Connection will be made when connection (which is called by query methods) is called.
-db_conf = CONFIG['database']
-ActiveRecord::Base.establish_connection(db_conf['url'])
+ActiveRecord::Base.establish_connection(ENV['DATABSE_URL'])
 
 # Load Models, Controllers, Helpers.
 Dir.glob("./{helpers,models,controllers}/*.rb").each do |file|
   require file
 end
 
-# Initialize OAuth Consumers.
-# conf[0]: provider name, conf[1]: settings for the provider.
-oauth_conf = CONFIG['oauth']
-CONSUMER = oauth_conf.each_with_object({}) do |conf, h|
-  h.merge! ({ conf[0] => OAuth::Consumer.new(conf[1]['consumer_key'],
-                                             conf[1]['consumer_secret'],
-                                             conf[1]['options'])})
-end
+# Initialize OAuth Consumer for Twitter.
+twitter_conf = CONFIG['oauth']['twitter']
+CONSUMER = {'twitter' => OAuth::Consumer.new(ENV['TW_CKEY'],
+                                             ENV['TW_CSEC'],
+                                             twitter_conf['options'])}
 
 # Twitter API constants
-twitter_conf = oauth_conf['twitter']
-TW_CALLBACK_URL = twitter_conf['callback']
+TW_CALLBACK_URL = ENV['TW_CALLBACK']
 TW_API_USER_INFO = twitter_conf['api']['user_info']
 
 # SSL secret for OAuth Access Token
-AT_KEY = CONFIG['openssl']['common-key-crypt']['at-key']
-ATS_KEY = CONFIG['openssl']['common-key-crypt']['ats-key']
+AT_KEY = ENV['SSL_AT_KEY']
+ATS_KEY = ENV['SSL_ATS_KEY']
 
 # Use HTTP method overriding.
 use Rack::MethodOverride
 
 # Use Cookie based Session.
 # Only session-id is stored in session. Session data is in @pool.
-use Rack::Session::Pool, CONFIG['session']
+session_conf = CONFIG['session']
+session_conf['secret'] = ENV['SESSION_SECRET']
+use Rack::Session::Pool, session_conf
 
 # Use Web Security Suite
 # By default, CSRF protection is implemeted by session-based,
