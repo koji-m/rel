@@ -23,7 +23,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "yard"
   spec.add_development_dependency "redcarpet"
   spec.add_development_dependency "sinatra-reloader"
-  spec.add_development_dependency "dotenv"
   spec.add_development_dependency "sqlite3"
 
   spec.add_dependency "activerecord"
@@ -33,4 +32,5 @@ Gem::Specification.new do |spec|
   spec.add_dependency "erubis"
   spec.add_dependency "mail"
   spec.add_dependency "mimemagic"
+  spec.add_dependency "dotenv"
 end
