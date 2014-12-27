@@ -1,1 +1,1 @@
-web: bundle exec ./lib/rackup -p 80
+web: bundle exec rackup -p 80 lib/config.ru
