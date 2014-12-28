@@ -1,10 +1,7 @@
 development:
-  database:
-    url: 
   session:
     key: rel_session
     expire_after: 604800
-    secret: 
   openssl:
     random:
       len: 16
@@ -12,14 +9,8 @@ development:
       keylen: 16
       digest: sha256
       iteration: 10000
-    common-key-crypt:
-      at-key: 
-      ats-key: 
   oauth:
     twitter:
-      consumer_key: 
-      consumer_secret: 
-      callback: 
       options:
         site: https://api.twitter.com/
         authorize_path: /oauth/authenticate
@@ -28,12 +19,9 @@ development:
   avatar:
     default: XXXX.png
 staging:
-  database:
-    url:
   session:
     key: rel_session
     expire_after: 604800
-    secret: 
   openssl:
     random:
       len: 16
@@ -41,14 +29,8 @@ staging:
       keylen: 16
       digest: sha256
       iteration: 10000
-    common-key-crypt:
-      at-key: 
-      ats-key: 
   oauth:
     twitter:
-      consumer_key: 
-      consumer_secret: 
-      callback: 
       options:
         site: https://api.twitter.com/
         authorize_path: /oauth/authenticate
@@ -57,12 +39,9 @@ staging:
   avatar:
     default: XXXX.png
 production:
-  database:
-    url:
   session:
     key: rel_session
     expire_after: 604800
-    secret: 
   openssl:
     random:
       len: 16
@@ -70,22 +49,12 @@ production:
       keylen: 16
       digest: sha256
       iteration: 10000
-    common-key-crypt:
-      at-key: 
-      ats-key: 
   oauth:
     twitter:
-      consumer_key: 
-      consumer_secret: 
-      callback: 
       options:
         site: https://api.twitter.com/
         authorize_path: /oauth/authenticate
       api:
         user_info: https://api.twitter.com/1.1/account/verify_credentials.json
   avatar:
-    default: XXXX.png
-    
-
-  
-    
+    default: XXXX.png 
