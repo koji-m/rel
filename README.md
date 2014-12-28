@@ -31,33 +31,33 @@ To use Rel on your server or try out locally, you can deploy it as following:
 (I have tested locally on WEBRICK and deployed on Heroku)
 
 1. Download source files.
-```
-	$ git clone https://github.com/koji-m/rel.git
-```
-
+ ```
+ 	$ git clone https://github.com/koji-m/rel.git
+ ```
+ 
 2. Install dependencies using Bundler.
-```
-	$ cd rel
+ ```
+ 	$ cd rel
 	$ bundle install
-```
-(The Bundler have not installed yet, install it by `gem install bundler`)
-
+ ```
+ (The Bundler have not installed yet, install it by `gem install bundler`)
+ 
 3. Generate configuration file and fix it for your environment.
-```
-	$ bundle exec rake app:env     # generate .env file
-	$ vi .env                      # edit environment variable value
-```
-
+ ```
+ 	$ bundle exec rake app:env     # generate .env file
+ 	$ vi .env                      # edit environment variable value
+ ```
+ 
 4. Create data base tables.
-```
-	$ bundle exec rake db:init
-```
+ ```
+ 	$ bundle exec rake db:init
+ ```
 
 5. Start up application.
-```
-	$ bundle exec rackup lib/config.ru
-```
-
+ ```
+ 	$ bundle exec rackup lib/config.ru
+ ```
+ 
 Now you can test it.
 
 
